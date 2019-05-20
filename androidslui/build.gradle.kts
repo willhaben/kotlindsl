@@ -11,7 +11,7 @@ android {
         applicationId = "com.minki.dslui"
         minSdkVersion(21)
         targetSdkVersion(28)
-        versionCode(1)
+        versionCode = 1
         versionName = "1.0"
     }
 
@@ -30,5 +30,5 @@ repositories {
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.0.2")
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib-jdk8:1.3.31"))
 }
