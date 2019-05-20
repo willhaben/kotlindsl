@@ -9,8 +9,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.0")
-        classpath(kotlin("gradle-plugin", "1.3.31"))
+        classpath("com.android.tools.build:gradle:3.4.1")
     }
 }
 
