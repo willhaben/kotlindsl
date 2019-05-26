@@ -30,5 +30,9 @@ repositories {
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.0.2")
+
+    val ankoVersion = "0.10.8"
+    implementation("org.jetbrains.anko:anko-sdk21:$ankoVersion")
+    implementation("org.jetbrains.anko:anko-sdk21-listeners:$ankoVersion")
     implementation(kotlin("stdlib-jdk8:1.3.31"))
 }
