@@ -1,6 +1,6 @@
 package com.minki.sqlbuilder
 
-import com.minki.sqlbuilder.Order.SortMethod.*
+import com.minki.sqlbuilder.Order.SortVariant.*
 
 fun main() {
     val query = SQLBuilder.query {

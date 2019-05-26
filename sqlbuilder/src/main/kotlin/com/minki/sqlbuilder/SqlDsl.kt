@@ -11,12 +11,12 @@ annotation class SqlMarker
 @SqlMarker
 abstract class Condition {
 
-    fun and(initializer: Condition.() -> Unit) {
-        addCondition(And().apply(initializer))
+    fun and(init: Condition.() -> Unit) {
+        addCondition(And().apply(init))
     }
 
-    fun or(initializer: Condition.() -> Unit) {
-        addCondition(Or().apply(initializer))
+    fun or(init: Condition.() -> Unit) {
+        addCondition(Or().apply(init))
     }
 
     infix fun String.eq(value: Any?) {
@@ -72,30 +72,30 @@ private class Eq(private val column: String, private val value: Any?) : Conditio
 @SqlMarker
 class Order {
 
-    private class OrderPair(val column : String, val sortMethod : SortMethod) {
-        override fun toString() = "$column $sortMethod"
+    private class OrderPair(val column : String, val sortVariant : SortVariant) {
+        override fun toString() = "$column $sortVariant"
     }
 
     fun clear() = orders.clear()
 
     private val orders = ArrayList<OrderPair>()
 
-    sealed class SortMethod {
-        object ascending : SortMethod(){
+    sealed class SortVariant {
+        object ascending : SortVariant(){
             override fun toString(): String {
                 return "ascending"
             }
         }
 
-        object descending : SortMethod(){
+        object descending : SortVariant(){
             override fun toString(): String {
                 return "descending"
             }
         }
     }
 
-    infix fun String.by(sortMethod : SortMethod) {
-        orders.add(OrderPair(this, sortMethod))
+    infix fun String.by(sortVariant : SortVariant) {
+        orders.add(OrderPair(this, sortVariant))
     }
 
     override fun toString(): String {
@@ -144,8 +144,8 @@ class SqlSelectBuilder {
         this.table = table
     }
 
-    fun where(initializer: Condition.() -> Unit) {
-        condition = And().apply(initializer)
+    fun where(init: Condition.() -> Unit) {
+        condition = And().apply(init)
     }
 
     fun order(init : Order.() -> Unit) {
@@ -170,6 +170,7 @@ object SQLBuilder {
     fun query(init: SqlSelectBuilder.() -> Unit): SqlSelectBuilder {
         val builder = SqlSelectBuilder()
         builder.init()
+        init(builder)
         return builder
     }
 }
