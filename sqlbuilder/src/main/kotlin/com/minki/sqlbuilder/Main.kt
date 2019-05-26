@@ -1,10 +1,9 @@
 package com.minki.sqlbuilder
 
 import com.minki.sqlbuilder.Order.SortMethod.*
-import com.minki.sqlbuilder.SQLBuilder.query
 
 fun main() {
-    val query = query {
+    val query = SQLBuilder.query {
         select {
             +"column1"
             +"column2"
@@ -18,7 +17,6 @@ fun main() {
             "column5" eq 42
         }
         order {
-            order {  }
             "column6" by ascending
             "column7" by descending
         }

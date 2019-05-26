@@ -2,10 +2,13 @@ package com.minki.sqlbuilder
 
 /**
  * this example is taken from https://www.baeldung.com/kotlin-dsl with own modifications
+ * this only generates a sql query string literal, it should only demonstrate the Kotlin dsl and should not be considered
+ * as serious production usage
  */
 @DslMarker
 annotation class SqlMarker
 
+@SqlMarker
 abstract class Condition {
 
     fun and(initializer: Condition.() -> Unit) {
@@ -66,6 +69,7 @@ private class Eq(private val column: String, private val value: Any?) : Conditio
     }
 }
 
+@SqlMarker
 class Order {
 
     private class OrderPair(val column : String, val sortMethod : SortMethod) {
@@ -103,6 +107,7 @@ class Order {
     }
 }
 
+@SqlMarker
 class Select {
 
     private val columns = mutableListOf<String>()
@@ -129,7 +134,6 @@ class SqlSelectBuilder {
     private lateinit var table: String
     private var condition: Condition? = null
     private var order : Order = Order()
-    private var columns : MutableList<String> = ArrayList()
 
     fun select(init : Select.() -> Unit) {
         select.clear()
