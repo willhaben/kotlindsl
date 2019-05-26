@@ -26,5 +26,4 @@ dependencies {
     compile("ch.qos.logback:logback-classic:$logback_version")
     compile("io.ktor:ktor-server-core:$ktor_version")
     compile("io.ktor:ktor-jackson:$ktor_version")
-    testCompile("io.ktor:ktor-server-tests:$ktor_version")
 }

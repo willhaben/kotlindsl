@@ -1,7 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
+    application
     kotlin("jvm")
+}
+
+application {
+    mainClassName = "com.minki.htmlbuilder.MainKt"
 }
 
 repositories {
@@ -11,8 +14,4 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.1")
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
 }

@@ -1,3 +1,5 @@
+package com.minki.repl
+
 object Write {
     val words = listOf("Write").toMutableList()
 
